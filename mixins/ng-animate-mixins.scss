@@ -1,0 +1,17 @@
+@mixin animated-state-on-entering() {
+  &.ng-leave, &.ng-enter.ng-enter-active {
+    @content;
+  }
+}
+
+@mixin animated-state-on-leaving() {
+  &.ng-enter, &.ng-leave.ng-leave-active {
+    @content;
+  }
+}
+
+@mixin animation-enter-leave() {
+  &.ng-enter, &.ng-leave {
+    @content;
+  }
+}

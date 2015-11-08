@@ -1,0 +1,63 @@
+/*========== Layouts and centering ==========*/
+
+@mixin horizontal($center) {
+  @extend .u-layout-horizontal;
+  @if ($center == 'v') {
+    @extend .u-center-horizontal-v;
+  }
+  @if ($center == 'h') {
+    @extend .u-center-horizontal-a;
+  }
+  @if ($center == 'a') {
+    @extend .u-center-horizontal;
+  }
+}
+
+@mixin vertical($center) {
+  @extend .u-layout-vertical;
+  @if ($center == 'v') {
+    @extend .u-center-vertical-v;
+  }
+  @if ($center == 'h') {
+    @extend .u-center-vertical-a;
+  }
+  @if ($center == 'a') {
+    @extend .u-center-vertical;
+  }
+}
+
+/*========== Columns ==========*/
+
+$max: 100%;
+@for $i from 1 through 6 {
+  .u-col-#{$i} {
+    flex: 0 0 $max/$i;
+  }
+  %u-col-#{$i} {
+    flex: 0 0 $max/$i;
+  }
+}
+
+@mixin col-1 {
+  @extend %u-col-1;
+}
+
+@mixin col-2 {
+  @extend %u-col-2;
+}
+
+@mixin col-3 {
+  @extend %u-col-3;
+}
+
+@mixin col-4 {
+  @extend %u-col-4;
+}
+
+@mixin col-5 {
+  @extend %u-col-5;
+}
+
+@mixin col-6 {
+  @extend %u-col-6;
+}

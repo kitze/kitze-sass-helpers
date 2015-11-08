@@ -1,0 +1,40 @@
+@function str-starts-with($string, $needle) {
+  @if type-of($string) != "string" {
+    @warn "`str-starts-with` function expecting a string for $string; #{type-of($string)} given.";
+    @return false;
+  }
+
+  @if type-of($needle) != "string" {
+    @warn "`str-starts-with` function expecting a string for $needle; #{type-of($needle)} given.";
+    @return false;
+  }
+
+  @return str-slice($string, 1, str-length($needle)) == $needle;
+}
+
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+@function get-part-of-selector($selector, $delimiter, $part:1) {
+  $selector: selectorToString($selector);
+  $position-of-dot: str-index($selector, ".");
+  @if ($position-of-dot != null) {
+    $delimiter: '.';
+  }
+  @return nth(sl-explode($selector, $delimiter), $part);
+}
+
+@function get-bem-element-parent($selector) {
+  @return get-part-of-selector($selector, $element-separator, 1);
+}
+
+@function get-bem-modifier-parent($selector) {
+  @return get-part-of-selector($selector, $modifier-separator, 1);
+}

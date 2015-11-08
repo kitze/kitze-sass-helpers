@@ -1,0 +1,6 @@
+@mixin custom-font($name, $extension, $url: '../font') {
+  @font-face {
+    font-family: $name;
+    src: url($url + $name + '.' + $extension);
+  }
+}

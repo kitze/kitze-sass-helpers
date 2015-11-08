@@ -1,0 +1,17 @@
+@mixin debug($color, $force-background:false) {
+  @if (variable_exists(debug-border-size) == false) {
+    $border-size: 1px;
+  }
+  @if (variable_exists(debug-with-background) == false) {
+    $debug-with-background: false;
+  }
+  @if (variable_exists(debug)) {
+    @if ($debug==true) {
+      @if ($force-background==true or $debug-with-background == true) {
+        background-color: $color;
+      } @else {
+        border: $border-size solid $color;
+      }
+    }
+  }
+}

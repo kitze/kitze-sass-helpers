@@ -1,0 +1,23 @@
+@mixin active-when-not($selector) {
+  &:active:not(#{$selector}) {
+    @content;
+  }
+}
+
+@mixin active-when-not-class($class) {
+  &:active:not(.#{$class}) {
+    @content;
+  }
+}
+
+@mixin hover-when-not($selector) {
+  &:hover:not(#{$selector}) {
+    @content;
+  }
+}
+
+@mixin hover-when-not-class($class) {
+  &:hover:not(.#{$class}) {
+    @content;
+  }
+}

@@ -1,0 +1,50 @@
+@if (variable_exists(debug-bem-border-size)==false) {
+  $debug-bem-border-size: 1px;
+}
+
+@if (variable_exists(debug-bem-background)==false) {
+  $debug-bem-background: false;
+}
+
+@if (variable_exists(debug-bem-background-opacity)==false) {
+  $debug-bem-background-opacity: 0.7;
+}
+
+@if (variable_exists(debug-bem) == false) {
+  $debug-bem: false;
+}
+
+@if ($debug-bem == true) {
+  [class^="o-"],
+  [class*=" o-"] {
+    outline: $debug-bem-border-size solid orange !important;
+    @if ($debug-bem-background == true) {
+      background-color: rgba(orange, $debug-bem-background-opacity) !important;
+    }
+  }
+
+  [class^="c-"],
+  [class*=" c-"] {
+    outline: $debug-bem-border-size solid cyan !important;
+    @if ($debug-bem-background == true) {
+      background-color: rgba(cyan, $debug-bem-background-opacity) !important;
+    }
+  }
+
+  [class^="u-"],
+  [class*=" u-"] {
+    outline: $debug-bem-border-size solid violet !important;
+    @if ($debug-bem-background == true) {
+      background-color: rgba(violet, $debug-bem-background-opacity) !important;
+    }
+  }
+
+  [class^="_"],
+  [class*=" _"] {
+    outline: $debug-bem-border-size solid red !important;
+    @if ($debug-bem-background) {
+      background-color: rgba(red, $debug-bem-background-opacity) !important;
+    }
+  }
+
+}

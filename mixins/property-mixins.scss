@@ -1,0 +1,262 @@
+@mixin global-rules() {
+  *,
+  *:before,
+  *:after {
+    @content;
+  }
+}
+
+@mixin border($style,  $sides...) {
+  @if ($style != "") {
+    @if ($sides == "") {
+      border: $style;
+    } @else {
+      @each $side in $sides {
+        @if ($side == 'top' or
+            $side == 'right' or
+            $side == 'bottom' or
+            $side == 'left') {
+          border-#{$side}: $style;
+        }
+      }
+    }
+  }
+}
+
+@mixin border-radius($size, $corners...) {
+  @each $corner in $corners {
+    @if ($corner == 'top') {
+      border-top-left-radius: $size;
+      border-top-right-radius: $size;
+    }
+    @if ($corner == 'bottom') {
+      border-bottom-left-radius: $size;
+      border-bottom-right-radius: $size;
+    }
+    @if ($corner == 'left') {
+      border-top-left-radius: $size;
+      border-bottom-left-radius: $size;
+    }
+    @if ($corner == 'right') {
+      border-top-right-radius: $size;
+      border-bottom-right-radius: $size;
+    } @else {
+      border-#{$corner}-radius: $size;
+    }
+  }
+}
+
+@mixin gradient-top-bottom($from, $to) {
+  background: linear-gradient(to bottom, $from, $to);
+}
+
+@mixin disabled() {
+  &[disabled] {
+    cursor: not-allowed;
+    @content;
+  }
+}
+
+@mixin full-overlay($color, $opacity) {
+  position: absolute;
+  z-index: 1;
+  background-color: $color;
+  opacity: $opacity;
+  @include stretch();
+}
+
+@mixin background-cover($url, $full) {
+  background-size: cover;
+  background-image: url($url);
+  @if ($full == true) {
+    @include stretch();
+  }
+}
+
+@mixin link($color:cornflowerblue, $darken:15, $underline:true) {
+  color: $color;
+  @if $underline == true {
+    text-decoration: underline;
+  }
+  @if ($underline == hover) {
+    text-decoration: none;
+  }
+  cursor: pointer;
+  &:hover {
+    color: darken($color, $darken);
+    @if $underline == hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@mixin f-icon($icon) {
+  content: $icon;
+  font-family: "fontello";
+}
+
+@mixin pattern($name) {
+  background: url('/img/pattern/' + $name + ".png") repeat;
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  line-height: $size;
+  border-radius: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin same-as-hover() {
+  @content;
+  &:hover {
+    @content;
+  }
+}
+
+@mixin background-and-hover($color) {
+  @include same-as-hover() {
+    background-color: $color;
+  }
+}
+
+@mixin absolute-zero($sides...) {
+  position: absolute;
+  @each $side in $sides {
+    #{$side}: 0;
+  }
+}
+
+@mixin absolute-full-horizontal() {
+  @include margin-horizontal(auto);
+  @include absolute-zero(left, right);
+}
+
+@mixin absolute-full-vertical() {
+  @include margin-vertical(auto);
+  @include absolute-zero(top, bottom);
+}
+
+@mixin absolute-full() {
+  margin: auto;
+  @include absolute-zero(top, bottom, left, right);
+}
+
+@mixin margin-horizontal($margin) {
+  margin-left: $margin;
+  margin-right: $margin;
+}
+
+@mixin margin-vertical($margin) {
+  margin-top: $margin;
+  margin-bottom: $margin;
+}
+
+@mixin no-select() {
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  @include prefix(user-select, none);
+}
+
+@mixin no-appearance() {
+  @include prefix(appearance, none);
+}
+
+@mixin button-unstyle() {
+  @include no-appearance();
+  outline: none;
+  border: 0;
+}
+
+@mixin input-unstyle() {
+  @include no-appearance();
+  outline: none;
+  border: 1px solid #cecece;
+}
+
+@mixin hover-and-click-button($color, $darken:5, $active:9) {
+  cursor: pointer;
+  background-color: $color;
+  @include no-select();
+  &:hover:enabled {
+    background-color: darken($color, $darken);
+  }
+  &:active:enabled {
+    background-color: darken($color, $active);
+  }
+}
+
+@mixin hover-and-click($color, $darken:5, $active:9) {
+  cursor: pointer;
+  background-color: $color;
+  @include no-select();
+  &:hover {
+    background-color: darken($color, $darken);
+  }
+  &:active {
+    background-color: darken($color, $active);
+  }
+}
+
+@mixin basic-shadow() {
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.41);
+}
+
+@mixin subtle-shadow() {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+@mixin stronger-shadow() {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+@mixin card-shadow() {
+  box-shadow: 0 1px 1px #aaa;
+}
+
+@mixin stretch() {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin no-text-break() {
+  white-space: nowrap;
+}
+
+@mixin text-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin max-size($size) {
+  max-width: $size;
+  max-height: $size;
+}
+
+@mixin proportional-height($split, $margin) {
+  $size: (100% / $split) - $margin * 2;
+  width: $size;
+  padding-bottom: $size;
+  margin: $margin;
+}
+
+@mixin photoshop-letter-spacing($size) {
+  letter-spacing: ($size/1000)+em;
+}
+
+@mixin set-after-content($val) {
+  &::after {
+    content: $val;
+  }
+}
+
+@mixin wrapper($wrapper) {
+  width: 100%;
+  margin: auto;
+  max-width: $wrapper;
+}

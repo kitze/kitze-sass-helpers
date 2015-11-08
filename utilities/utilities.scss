@@ -1,0 +1,66 @@
+@include utility(inline) {
+  display: inline-block;
+}
+
+@include utility(hide) {
+  display: none;
+}
+
+@include utility(invisible) {
+  opacity: 0;
+}
+
+@include utility(no-list-style) {
+  list-style-type: none;
+  padding: 0;
+}
+
+@include utility(no-underline) {
+  text-decoration: none;
+}
+
+@include utility(relative) {
+  position: relative;
+}
+
+@include utility(center) {
+  text-align: center;
+}
+
+@include utility(stretch) {
+  @include stretch();
+}
+
+@include utility(align) {
+  @include mod(left) {
+    text-align: left;
+  }
+  @include mod(right) {
+    text-align: right;
+  }
+  @include mod(center) {
+    text-align: center;
+  }
+}
+
+@include utility(no-select) {
+  @include no-select();
+}
+
+@include utility(no-appearance) {
+  @include no-appearance();
+}
+
+@include utility(button-unstyle) {
+  @include button-unstyle();
+}
+
+$sides: (t:"top", b:"bottom", l:"left", r:"right");
+$sizes: (s:5, m:10, l:15, xl: 20, xxl: 25, xxxl: 30);
+@each $sideShort, $side in $sides {
+  @each $size, $length in $sizes {
+    @include utility(margin-#{$sideShort}-#{$size}) {
+      margin-#{$side}: $length+px;
+    }
+  }
+}

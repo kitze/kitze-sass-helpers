@@ -1,0 +1,29 @@
+@include object(cardbox) {
+  padding: 20px 10px;
+  background-color: #ffffff;
+  font-size: 15px;
+  @include card-shadow();
+}
+
+@include object(link-unstyle) {
+  cursor: default;
+  @include same-as-hover() {
+    text-decoration: none;
+  }
+}
+
+@include object(link) {
+  @include link();
+}
+
+@include object(wrapper) {
+  @include mod(s) {
+    @include wrapper(600px);
+  }
+  @include mod(m) {
+    @include wrapper(800px);
+  }
+  @include mod(l) {
+    @include wrapper(1000px);
+  }
+}

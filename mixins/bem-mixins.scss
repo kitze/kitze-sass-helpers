@@ -1,0 +1,101 @@
+@mixin component($name) {
+  @if (str-starts-with($name, $component-prefix)) {
+    $component-prefix: '';
+  }
+  .#{$component-prefix}#{$name} {
+    @content;
+  }
+}
+
+@mixin element($name) {
+  &__#{$name} {
+    @content;
+  }
+}
+
+@mixin object($name) {
+  @if (str-starts-with($name, $object-prefix)) {
+    $object-prefix: '';
+  }
+  .#{$object-prefix}#{$name} {
+    @content;
+  }
+}
+
+@mixin utility($name) {
+  @if (str-starts-with($name, $utility-prefix)) {
+    $utility-prefix: '';
+  }
+  .#{$utility-prefix}#{$name} {
+    @content;
+  }
+}
+
+@mixin mod($name, $parent:"") {
+  &--#{$name} {
+    @content;
+  }
+}
+
+@mixin element-of($parent,$name) {
+  .#{$parent+$element-separator+$name} {
+    @content;
+  }
+}
+
+@mixin mod-of($parent, $name) {
+  .#{$parent+$modifier-separator+$name} {
+    @content;
+  }
+}
+
+@mixin is($action) {
+  &.is-#{$action} {
+    @content;
+  }
+}
+
+@mixin has($action) {
+  &.has-#{$action} {
+    @content;
+  }
+}
+
+@mixin is-under($selector) {
+  @at-root {
+    #{$selector} & {
+      @content;
+    }
+  }
+}
+
+@mixin modify-child-element($child) {
+  $parent-selector: get-bem-modifier-parent(&);
+
+  @at-root {
+    & .#{$parent-selector+$element-separator+$child} {
+      @content;
+    }
+  }
+}
+
+@mixin is-under-component-with-mod($mod) {
+  $parent-selector: get-bem-element-parent(&);
+  @at-root {
+    .#{$parent-selector+$modifier-separator+$mod} & {
+      @content;
+    }
+  }
+}
+
+@mixin hover-when-not-mod($mod) {
+  &:hover:not(#{&+$modifier-separator+$mod}) {
+    @content;
+  }
+}
+
+@mixin active-when-not-mod($mod) {
+  &:active:not(#{&+$modifier-separator+$mod}) {
+    @content;
+  }
+}

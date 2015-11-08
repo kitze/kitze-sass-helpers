@@ -1,0 +1,45 @@
+$placeholders: '-webkit-input-placeholder',
+'-moz-placeholder',
+'-ms-input-placeholder';
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content
+  }
+  &:-moz-placeholder {
+    @content
+  }
+  &::-moz-placeholder {
+    @content
+  }
+  &:-ms-input-placeholder {
+    @content
+  }
+}
+
+@mixin prefix($name, $value) {
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$name}: #{$value};
+  }
+}
+
+@mixin ie-only {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin edge-only() {
+  @supports (-ms-accelerator:true) {
+    @content
+  }
+}
+
+@mixin ie-and-edge() {
+  @include ie-only() {
+    @content
+  }
+  @include edge-only() {
+    @content
+  }
+}
