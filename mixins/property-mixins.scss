@@ -238,6 +238,16 @@
   max-height: $size;
 }
 
+@mixin size($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin font-size-height($size) {
+  font-size: $size;
+  line-height: $size;
+}
+
 @mixin proportional-height($split, $margin) {
   $size: (100% / $split) - $margin * 2;
   width: $size;
