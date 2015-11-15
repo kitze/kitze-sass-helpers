@@ -1,0 +1,23 @@
+{
+  "name": "kitze-sass-helpers",
+  "homepage": "https://github.com/kitze/kitze-sass-helpers",
+  "authors": [
+    "Kristjian Ristovski <kristijan.mkd@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "kitze",
+    "sass",
+    "helpers"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
