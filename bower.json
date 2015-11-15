@@ -1,6 +1,7 @@
 {
   "name": "kitze-sass-helpers",
   "homepage": "https://github.com/kitze/kitze-sass-helpers",
+  "version": "1.0.0",
   "authors": [
     "Kristjian Ristovski <kristijan.mkd@gmail.com>"
   ],
