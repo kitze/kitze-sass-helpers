@@ -31,15 +31,15 @@ $placeholders: '-webkit-input-placeholder',
 
 @mixin edge-only() {
   @supports (-ms-accelerator:true) {
-    @content
+    @content;
   }
 }
 
 @mixin ie-and-edge() {
   @include ie-only() {
-    @content
+    @content;
   }
   @include edge-only() {
-    @content
+    @content;
   }
 }
